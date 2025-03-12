@@ -28,11 +28,6 @@ module Types
       "Hello World!"
     end
 
-    field :posts, [Types::PostType], null: false
-    def posts
-      [
-        {id: "1"}, {id: "2"}
-      ]
-    end
+    field :posts, resolver: Resolvers::PostsResolver
   end
 end
