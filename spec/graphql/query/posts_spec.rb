@@ -8,6 +8,9 @@ RSpec.describe "post Query", type: :request do
       query {
         posts {
           id
+          userName
+          type
+          content
         }
       }
     GQL
@@ -20,6 +23,9 @@ RSpec.describe "post Query", type: :request do
     data = json["data"]["posts"]
 
     expect(response).to have_http_status(:success)
-    expect(data).to eq([{"id"=> "1"}, {"id"=> "2"}])
+    expect(data).to eq([
+      { "id" => '1', "userName" => "user 1", "type" => "Sports", "content" => "user 1 post content ..." },
+      { "id" => '2', "userName" => "user 2", "type" => "Movie", "content" => "user 2 post content on movie ..." }
+    ])
   end
 end
